@@ -78,23 +78,13 @@ if (!empty($_SESSION['ADD_PRODUCT_BASKET'])) {?>
 
 <script>
     /**
-     * gtag event
+     * ga
      */
-    gtag('event', 'add_to_cart', {
-        "items": [
-            {
-                "id": "<?=$_SESSION['ADD_PRODUCT_BASKET']["id"]?>",
-                "name": "<?=$_SESSION['ADD_PRODUCT_BASKET']["name"]?>",
-                "category": "<?=$_SESSION['ADD_PRODUCT_BASKET']["category"]?>",
-                //"list_name": "Search Results",
-                //"brand": "Google", // MANUFACTURER
-                //"variant": "Black",
-                "list_position": 1,
-                "quantity": '<?=$_SESSION['ADD_PRODUCT_BASKET']["quantity"]?>',
-                "price": '<?=$_SESSION['ADD_PRODUCT_BASKET']["price"]?>'
-            }
-        ]
-    });
+    if ("ga" in window) {
+        tracker = ga.getAll()[0];
+        if (tracker)
+            tracker.send("event", "add_to_cart", "addtocart");
+    }
 </script>
 
   <?

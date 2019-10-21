@@ -278,6 +278,9 @@ if ($arParams["ARTICLE_POSITION"] && $arParams["ARTICLE_POSITION"] != "none")
 
     $(document).ready(function () {
         setTimeout(() => {
+
+
+
             gtag('event', 'view_item', {
                 "items": [
                     {
@@ -286,13 +289,14 @@ if ($arParams["ARTICLE_POSITION"] && $arParams["ARTICLE_POSITION"] != "none")
                         "price": "<?php echo $arResult['MIN_PRICE']["VALUE"] ?>",
                         "quantity": "<?php echo $arResult['PRODUCT']["QUANTITY"] ?>",
                         "brand": "<?php echo $arResult['PROPERTIES']["MANUFACTURER"]["VALUE"] ?>",
-                        "category": "<?php echo $arResult['SECTION']["NAME"] ?>",
+                        "category": "viewitem<?//php echo $arResult['SECTION']["NAME"] ?>",
                         "list_position": 1
                         //"list_name": "Search Results",
                         //"variant": "Black",
                     }
                 ]
             });
+
         }, 2000);
     });
 

@@ -278,24 +278,14 @@ if ($arParams["ARTICLE_POSITION"] && $arParams["ARTICLE_POSITION"] != "none")
 
     $(document).ready(function () {
         setTimeout(() => {
-
-
-
-            gtag('event', 'view_item', {
-                "items": [
-                    {
-                        "id": "<?php echo $arResult['ID'] ?>",
-                        "name": "<?php echo $arResult['NAME'] ?>",
-                        "price": "<?php echo $arResult['MIN_PRICE']["VALUE"] ?>",
-                        "quantity": "<?php echo $arResult['PRODUCT']["QUANTITY"] ?>",
-                        "brand": "<?php echo $arResult['PROPERTIES']["MANUFACTURER"]["VALUE"] ?>",
-                        "category": "viewitem<?//php echo $arResult['SECTION']["NAME"] ?>",
-                        "list_position": 1
-                        //"list_name": "Search Results",
-                        //"variant": "Black",
-                    }
-                ]
-            });
+            /**
+             * ga
+             */
+            if ("ga" in window) {
+                tracker = ga.getAll()[0];
+                if (tracker)
+                    tracker.send("event", "view_item", "viewitem", "<?php echo $arResult['NAME'] ?>");
+            }
 
         }, 2000);
     });

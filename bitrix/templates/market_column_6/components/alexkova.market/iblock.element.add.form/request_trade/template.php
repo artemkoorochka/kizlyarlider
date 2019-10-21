@@ -27,14 +27,13 @@ if (strlen($arResult["MESSAGE"]) > 0): $_SESSION['BUY_IN_ONE_CLICK'] = true; ?>
 
     <script>
         /**
-         * gtag
+         * ga
          */
-        gtag('event', 'generate_lead', {
-            "transaction_id": "<?=$arResult["ELEMENT"]["ID"]?>",
-            "value": "<?=$arResult["ELEMENT"]["NAME"]?>"
-        });
-
-        
+        if ("ga" in window) {
+            tracker = ga.getAll()[0];
+            if (tracker)
+                tracker.send("event", "generate_lead", "generatelead", "<?=$arResult["ELEMENT"]["NAME"]?>");
+        }
     </script>
 
 	<?

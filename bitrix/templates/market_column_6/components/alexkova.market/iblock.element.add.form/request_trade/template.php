@@ -34,6 +34,7 @@ if (strlen($arResult["MESSAGE"]) > 0): $_SESSION['BUY_IN_ONE_CLICK'] = true; ?>
             "value": "<?=$arResult["ELEMENT"]["NAME"]?>"
         });
 
+        
     </script>
 
 	<?

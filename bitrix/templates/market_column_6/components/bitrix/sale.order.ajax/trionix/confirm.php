@@ -149,20 +149,14 @@ if($arResult["ORDER"]["ID"] > 0){
 
     <script>
         /**
-         * gtag
+         * ga
          */
-        gtag('event', 'purchase', {
-            "transaction_id": "<?=$arResult["ORDER"]["ID"]?>",
-            "affiliation": "<?=$arResult["ORDER"]["LID"]?>",
-            "value": "<?=$arResult["ORDER"]["PRICE"]?>",
-            "currency": "<?=$arResult["ORDER"]["CURRENCY"]?>",
-            "tax": "<?=$arResult["ORDER"]["TAX_VALUE"]?>",
-            "shipping": "<?=$arResult["ORDER"]["PRICE_DELIVERY"]?>",
-            "category": "cat_purchase",
-            <?if(!empty($arResult["BASKET_ITEMS"])):?>
-            "items": <?=$arResult["BASKET_ITEMS"]?>
-            <?endif;?>
-        });
+        if ("ga" in window) {
+            tracker = ga.getAll()[0];
+            if (tracker)
+                tracker.send("event", "purchase", "cat_purchase", "<?=$arResult["ORDER"]["PRICE"]?>");
+        }
+
     </script>
 
 <? else: ?>
